@@ -4,14 +4,14 @@ To make this bot feel user-friendly to interact with, I have added personalizati
 
 
 **FEATURES**
-•	Conversational interface with stylized bot and user dialogues.
-•	Personalizes interaction using user’s name.
-•	Voice greeting using .wav audio playback (via NAudio).
-•	Sentiment detection, chatbot can adjust its responses based on the user’s sentiment to create an empathetic interaction.
-•	Chatbot can recognise keywords and generate random responses for each keyword.
-•	Chatbot is equipped with memory recall abilities.
-•	Code is modular consisting of 6 classes.
-•	Answers questions about:
+•Conversational interface with stylized bot and user dialogues.
+•Personalizes interaction using user’s name.
+•Voice greeting using .wav audio playback (via NAudio).
+•Sentiment detection, chatbot can adjust its responses based on the user’s sentiment to create an empathetic interaction.
+•Chatbot can recognise keywords and generate random responses for each keyword.
+•Chatbot is equipped with memory recall abilities.
+•Code is modular consisting of 6 classes.
+•Answers questions about:
       o	Password Security
       o	Phishing
       o	Privacy Settings
@@ -21,9 +21,9 @@ To make this bot feel user-friendly to interact with, I have added personalizati
 
 
 **HOW TO SETUP PROJECT**
-1.	Clone or download the project folder.
-2.	Open the project in Visual Studio 2022.
-3.	Ensure that your solution contains:
+1. Clone or download the project folder.
+2. Open the project in Visual Studio 2022.
+3. Ensure that your solution contains:
      o	Program.cs
      o	UserDetails.cs
      o	ChatBot_Dialogue.cs
@@ -32,7 +32,7 @@ To make this bot feel user-friendly to interact with, I have added personalizati
      o	ChatBot_Logo.cs
      o	JARVIS.wav file
      o	As well as all the necessary files and folders
-4.	Build and run the project.
+4. Build and run the project.
 
 
 **REQUIRED PACKAGES**

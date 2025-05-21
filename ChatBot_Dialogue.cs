@@ -20,7 +20,7 @@ namespace POE_ChatBot_ST10438817
             //this method will prompt the user to enter thier name
             //so chatbot can refer to the user by name, thus more realistic convo
             string userName;
-          
+
 
             Console.WriteLine();
             Console.ForegroundColor = ConsoleColor.DarkGreen;
@@ -35,10 +35,10 @@ namespace POE_ChatBot_ST10438817
             Thread.Sleep(13000);//this delays allowing the voice recording to complete before prompting the user for input
             do
             {
-               
+
                 Console.Write(ChatBot_Characteristics.DisplayUserDialog());
                 userName = Console.ReadLine();
-               
+
 
                 try
                 {
@@ -52,7 +52,7 @@ namespace POE_ChatBot_ST10438817
                 catch (Exception ex)
                 {
                     Console.WriteLine(ex.Message); // Error Message 
-                    
+
                 }
 
             } while (string.IsNullOrEmpty(userName) == true);
@@ -79,7 +79,7 @@ namespace POE_ChatBot_ST10438817
             string userFavouriteTopic;
             bool isChecked = false;
 
-            
+
 
             HashSet<string> validTopics = new HashSet<string> { "passwords", "phishing", "privacy" };//impelenting a generic collection
 
@@ -105,7 +105,7 @@ namespace POE_ChatBot_ST10438817
                             isChecked = true;
                             ud.UserFavouriteTopic = word;
                             Console.WriteLine($"{ChatBot_Characteristics.DisplayChatBotDialog()}Great! I'll remember that you're interested in {ud.UserFavouriteTopic}. It's a crucial part of cybersecurity.");
-                            break; 
+                            break;
                         }
                     }
 
@@ -118,7 +118,7 @@ namespace POE_ChatBot_ST10438817
                 catch (Exception ex)
                 {
                     Console.WriteLine(ex.Message);
-                    isChecked = false; 
+                    isChecked = false;
                 }
 
             } while (!isChecked);
@@ -144,7 +144,7 @@ namespace POE_ChatBot_ST10438817
         Signing off... but never truly gone.
         Goodbye for now!
 ";
-        
+
         }
 
 
@@ -173,7 +173,7 @@ namespace POE_ChatBot_ST10438817
         4. My Purpose
         5. Exit
 ";
-            
+
         }
 
 
@@ -196,7 +196,7 @@ namespace POE_ChatBot_ST10438817
 
 
 
-    
+
 
         public static List<string> PhishingFacts()
         {
@@ -215,7 +215,7 @@ namespace POE_ChatBot_ST10438817
         }
 
 
-      
+
 
         public static List<string> PasswordFacts()
         {
@@ -248,27 +248,93 @@ namespace POE_ChatBot_ST10438817
             return PrivacyFactsContent;
         }//end of method
 
-
-        public static void GetRandomResponseFavourtieTopic(string key)
+        public static List<string> PasswordSentiment()
         {
-
-            string[] FavourtieTopicResponse = { "Ohh yes, I remember — that was your favourite cybersecurity topic!", $"That's right! You're really into {ud.UserFavouriteTopic} , aren't you?", "Oh yes, you brought that up earlier — very relevant in today’s digital world!", "I remember you mentioned that before. Let's dive deeper into it!" };
-            //int iCount = 0;
-            int iRandom = random.Next(1, 6); 
-
-            if ( (key == ud.UserFavouriteTopic) && (iRandom == 5) )
+            List<string> PasswordSentimentContent = new List<string>
             {
-                ChatBot_Characteristics.ChatBot_Colour();
-                Console.WriteLine($"{FavourtieTopicResponse[random.Next(FavourtieTopicResponse.Length)]}");
-            }
-           
-
+                    $@"{ChatBot_Characteristics.DisplayChatBotDialog()}I totally understand your concern—password safety is a serious issue, and it’s great that you’re thinking 
+        about it proactively. With cyber threats becoming more sophisticated every day, it's important to take 
+        protective steps. If you’d like, I can help walk you through best practices like using a password manager, 
+        enabling two-factor authentication, and spotting phishing attempts.",
+                $@"{ChatBot_Characteristics.DisplayChatBotDialog()}Your worries are completely valid, {ud.UserName}. Passwords are the keys to your digital life, and keeping them safe 
+        is essential. I care deeply about making sure you feel secure, and I’m here to help you strengthen your 
+        defenses. Let’s go over some practical tips to reduce risk and keep your accounts safe from unauthorized access.",
+                $@"{ChatBot_Characteristics.DisplayChatBotDialog()}It’s good that you’re thinking about this. Many people don’t realize the importance of strong, unique passwords 
+        until it’s too late. I’m genuinely concerned for your digital security and want to make sure you’re protected. 
+        Let’s go over how to set up strong passwords and look into options like password managers and biometric login 
+        features.",
+                $@"{ChatBot_Characteristics.DisplayChatBotDialog()}You’re right to be worried—online safety is more important than ever. I share your concern, and I want to make 
+        sure you’re equipped with the tools and knowledge to stay protected. Whether it’s avoiding reused passwords or 
+        setting up two-factor authentication, I can help guide you through it step by step.",
+                $@"{ChatBot_Characteristics.DisplayChatBotDialog()}I'm really glad you brought this up, {ud.UserName}. Password safety isn’t something to take lightly. I’m here to 
+        support you, and it’s my priority to help you feel confident in your online security. We can look at ways to 
+        safeguard your information effectively, so you don’t have to worry as much going forward."
+            };
+            return PasswordSentimentContent;
         }
 
-        //readme breif description of the project (3/4 lines), features of chatbot (point form),
-        //how to setup the project
-        //what packages to install on their computer
-        // developer information
+
+        public static List<string> PhishingSentiment()
+        {
+            List<string> PhishingSentimentContent = new List<string>
+            {
+                $@"{ChatBot_Characteristics.DisplayChatBotDialog()}I understand your concern, {ud.UserName}. Phishing is a serious issue, and it’s great that you’re thinking about it 
+        proactively. With cyber threats becoming more sophisticated every day, it's important to take protective steps. 
+        If you’d like, I can help walk you through best practices like spotting phishing attempts and securing your 
+        accounts.",
+                $@"{ChatBot_Characteristics.DisplayChatBotDialog()}Your worries are completely valid, {ud.UserName}. Phishing scams are becoming increasingly sophisticated, and it’s 
+        essential to stay vigilant. I care deeply about making sure you feel secure, and I’m here to help you strengthen        your defenses. Let’s go over some practical tips to reduce risk and keep your accounts safe from unauthorized 
+        access.",
+                $@"{ChatBot_Characteristics.DisplayChatBotDialog()}It’s good that you’re thinking about this. Many people don’t realize the importance of being cautious online 
+        until it’s too late. I’m genuinely concerned for your digital security and want to make sure you’re protected. 
+        Let’s go over how to spot phishing attempts and look into options like two-factor authentication.",
+                $@"{ChatBot_Characteristics.DisplayChatBotDialog()}You’re right to be worried—online safety is more important than ever. I share your concern, and I want to make 
+        sure you’re equipped with the tools and knowledge to stay protected. Whether it’s avoiding suspicious emails or         verifying links before clicking, I can help guide you through it step by step.",
+                $@"{ChatBot_Characteristics.DisplayChatBotDialog()}I'm really glad you brought this up, {ud.UserName}. Phishing is a serious issue that affects many people. I’m here to         support you, and it’s my priority to help you feel confident in your online security. We can look at ways to 
+        safeguard your information effectively, so you don’t have to worry as much going forward."
+            };
+            return PhishingSentimentContent;
+        }
+
+        public static List<string> PrivacySentiment()
+        {
+            List<string> PrivacySentimentContent = new List<string>
+            {
+                $@"{ChatBot_Characteristics.DisplayChatBotDialog()}I understand your concern, {ud.UserName}. Privacy is a serious issue, and it’s great that you’re thinking about it 
+        proactively. With data breaches becoming more common, it's important to take protective steps. If you’d like, I 
+        can help walk you through best practices like securing your accounts and understanding privacy settings.",
+                $@"{ChatBot_Characteristics.DisplayChatBotDialog()}Your worries are completely valid, {ud.UserName}. Privacy concerns are becoming increasingly prevalent, and it’s 
+        essential to stay vigilant. I care deeply about making sure you feel secure, and I’m here to help you strengthen        your defenses. Let’s go over some practical tips to reduce risk and keep your information safe.",
+                $@"{ChatBot_Characteristics.DisplayChatBotDialog()}It’s good that you’re thinking about this. Many people don’t realize the importance of protecting their privacy         until it’s too late. I’m genuinely concerned for your digital security and want to make sure you’re protected. 
+        Let’s go over how to safeguard your information and look into options like privacy settings.",
+                $@"{ChatBot_Characteristics.DisplayChatBotDialog()}You’re right to be worried—online safety is more important than ever. I share your concern, and I want to make 
+        sure you’re equipped with the tools and knowledge to stay protected. Whether it’s avoiding oversharing or 
+        understanding data collection practices, I can help guide you through it step by step.",
+                $@"{ChatBot_Characteristics.DisplayChatBotDialog()}I'm really glad you brought this up, {ud.UserName}. Privacy is a serious issue that affects many people. I’m here to 
+        support you, and it’s my priority to help you feel confident in your online security. We can look at ways to 
+        safeguard your information effectively, so you don’t have to worry as much going forward."
+            };
+            return PrivacySentimentContent;
+        }
+
+        public static void GetRandomResponseFavourtieTopic(string userInput)
+        {
+            if (ud.UserFavouriteTopic != null &&
+                userInput.IndexOf(ud.UserFavouriteTopic, StringComparison.OrdinalIgnoreCase) >= 0)
+            {
+                string[] FavourtieTopicResponse = {
+            $"Ohh yes, I remember — {ud.UserFavouriteTopic} was your favourite cybersecurity topic!",
+            $"That's right! You're really into {ud.UserFavouriteTopic}, aren't you?",
+            $"Oh yes, you brought {ud.UserFavouriteTopic} up earlier — very relevant in today's digital world!",
+            $"I remember you mentioned {ud.UserFavouriteTopic} before. Let's dive deeper into it!"
+        };
+
+                ChatBot_Characteristics.ChatBot_Colour();
+                Console.Write(FavourtieTopicResponse[random.Next(FavourtieTopicResponse.Length)]);
+            }
+        }
+
+
 
 
     }

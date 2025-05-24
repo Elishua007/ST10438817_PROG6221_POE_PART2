@@ -290,7 +290,7 @@ namespace POE_ChatBot_ST10438817
         Let’s go over how to spot phishing attempts and look into options like two-factor authentication.",
                 $@"{ChatBot_Characteristics.DisplayChatBotDialog()}You’re right to be worried—online safety is more important than ever. I share your concern, and I want to make 
         sure you’re equipped with the tools and knowledge to stay protected. Whether it’s avoiding suspicious emails or         verifying links before clicking, I can help guide you through it step by step.",
-                $@"{ChatBot_Characteristics.DisplayChatBotDialog()}I'm really glad you brought this up, {ud.UserName}. Phishing is a serious issue that affects many people. I’m here to         support you, and it’s my priority to help you feel confident in your online security. We can look at ways to 
+                $@"{ChatBot_Characteristics.DisplayChatBotDialog()}I'm really glad you brought this up, {ud.UserName}. Phishing is a serious issue that affects many people. I’m here to             support you, and it’s my priority to help you feel confident in your online security. We can look at ways to 
         safeguard your information effectively, so you don’t have to worry as much going forward."
             };
             return PhishingSentimentContent;

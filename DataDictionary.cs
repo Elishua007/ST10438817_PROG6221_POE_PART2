@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace POE_ChatBot_ST10438817
 {
-    
+
     internal static class DataDictionary
     {
 
@@ -19,7 +19,7 @@ namespace POE_ChatBot_ST10438817
         // Create a single instance of Random and reuse it
         private static Random random = new Random();
 
-        public static Dictionary<string, string > chatResponses = new Dictionary<string, string >(StringComparer.OrdinalIgnoreCase)
+        public static Dictionary<string, string> chatResponses = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase)
         {
 
 
@@ -29,7 +29,7 @@ namespace POE_ChatBot_ST10438817
 
         public static Dictionary<string, List<string>> cyberResponses = new Dictionary<string, List<string>>(StringComparer.OrdinalIgnoreCase)
         {
-           
+
 
 
         };
@@ -42,7 +42,7 @@ namespace POE_ChatBot_ST10438817
 
         };
 
-      
+
 
         public static string GetRandomCyberResponse(string key)
         {
@@ -71,8 +71,10 @@ namespace POE_ChatBot_ST10438817
         private static UserDetails CurrentUser { get; set; }
 
 
-        public static void DisplayResponse(UserDetails userDetails) 
+        public static void DisplayResponse(UserDetails userDetails)
         {
+
+            HashSet<string> validTopics = new HashSet<string> { "passwords", "phishing", "privacy" };//impelenting a generic collection
 
 
             CurrentUser = userDetails;
@@ -95,7 +97,7 @@ namespace POE_ChatBot_ST10438817
                 chatResponses.Add(thank, ChatBot_Dialogue.DisplayYourWelcomeMessage());
             }
 
-            List<string> topics = new List<string> { "topic", "topics", "what can you do?"};
+            List<string> topics = new List<string> { "topic", "topics", "what can you do?" };
             foreach (var topic in topics)
             {
                 chatResponses.Add(topic, ChatBot_Dialogue.DisplayChatBotTopics());
@@ -107,7 +109,7 @@ namespace POE_ChatBot_ST10438817
                 chatResponses.Add(purpose, ChatBot_Dialogue.DisplayChatBoxPurpose());
             }
 
-            List<string> phishings = new List<string> {"phishing","facts about phishing","talk about phishing","discuss about phishing","what is phishing?" };
+            List<string> phishings = new List<string> { "phishing", "facts about phishing", "talk about phishing", "discuss about phishing", "what is phishing?" };
             foreach (var phishing in phishings)
             {
                 cyberResponses.Add(phishing, ChatBot_Dialogue.PhishingFacts());
@@ -126,19 +128,19 @@ namespace POE_ChatBot_ST10438817
             }
 
 
-            List<string> passwordSentiment = new List<string> { "I am concerned about password saftey", "I am worried about password saftey", "I am frustrated about password saftey", "I am concerned about passwords", "I am worried about passwords", "I am frustrated about passwords"};
+            List<string> passwordSentiment = new List<string> { "I am concerned about password saftey", "I am worried about password saftey", "I am frustrated about password saftey", "I am concerned about passwords", "I am worried about passwords", "I am frustrated about passwords" };
             foreach (var passwordSentimentFact in passwordSentiment)
             {
                 sentimentResponses.Add(passwordSentimentFact, ChatBot_Dialogue.PasswordSentiment());
             }
 
-            List<string> phishingSentiment = new List<string> { "I am concerned about phishing", "I am worried about phishing", "I am frustrated about phishing"};
+            List<string> phishingSentiment = new List<string> { "I am concerned about phishing", "I am worried about phishing", "I am frustrated about phishing" };
             foreach (var phishingSentimentFact in phishingSentiment)
             {
                 sentimentResponses.Add(phishingSentimentFact, ChatBot_Dialogue.PhishingSentiment());
             }
 
-            List<string> privacySentiment = new List<string> { "I am concerned about privacy", "I am worried about privacy", "I am frustrated about privacy"};
+            List<string> privacySentiment = new List<string> { "I am concerned about privacy", "I am worried about privacy", "I am frustrated about privacy" };
             foreach (var privacySentimentFact in privacySentiment)
             {
                 sentimentResponses.Add(privacySentimentFact, ChatBot_Dialogue.PrivacySentiment());
@@ -153,23 +155,52 @@ namespace POE_ChatBot_ST10438817
                 userInput = Console.ReadLine().Trim().ToLower();//trim removes all whitespaces
 
 
+                string[] splitWords = userInput.ToLower().Split(' ');
+
+
                 if (chatResponses.ContainsKey(userInput))
                 {
                     ChatBot_Characteristics.ChatBot_Colour();
                     Console.WriteLine($"{chatResponses[userInput]}");
-                   
+
                 }
                 else if (cyberResponses.ContainsKey(userInput))
                 {
                     ChatBot_Characteristics.ChatBot_Colour();
                     Console.WriteLine($"{GetRandomCyberResponse(userInput)}");
+
+                    foreach (string word in splitWords)
+                    {
+                        if (validTopics.Contains(word))
+                        {
+                            Console.WriteLine($"{ChatBot_Characteristics.DisplayChatBotDialog()}Would you like to know more about {word}? It's a crucial part of cybersecurity.");
+                            Console.Write($"{ChatBot_Characteristics.DisplayUserDialog()}");
+                            string response = Console.ReadLine().Trim().ToLower();
+
+                            if (response == "yes" || response == "sure" || response == "absolutely")
+                            {
+                                Console.WriteLine($"{ChatBot_Characteristics.DisplayChatBotDialog()}Great! Here's some more information about {word}:");
+                                Console.WriteLine($"{GetRandomCyberResponse(word)}");
+                            }
+                            else if (response == "no" || response == "not really" || response == "no thanks")
+                            {
+                                Console.WriteLine($"{ChatBot_Characteristics.DisplayChatBotDialog()}No problem! If you have any other questions, feel free to ask.");
+                            }
+                            else
+                            {
+                                Console.WriteLine($"{ChatBot_Characteristics.DisplayChatBotDialog()}I didn't quite understand that. Please answer with 'yes' or 'no'.");
+                            }
+                        }
+                    }
+
+
                 }
                 else if (sentimentResponses.ContainsKey(userInput))
                 {
                     ChatBot_Characteristics.ChatBot_Colour();
                     Console.WriteLine($"{GetRandomSentimentResponse(userInput)}");
                 }
-                
+
                 else
                 {
                     ChatBot_Characteristics.ChatBot_Colour();
@@ -183,7 +214,7 @@ namespace POE_ChatBot_ST10438817
                     OnFavoriteTopicMentioned?.Invoke(CurrentUser.UserFavouriteTopic);
                 }
 
-            } while ( (userInput != "exit") && (userInput != "goodbye") && (userInput != "bye") && (userInput != "see you later") );
+            } while ((userInput != "exit") && (userInput != "goodbye") && (userInput != "bye") && (userInput != "see you later"));
 
             ChatBot_Logo.DisplayGoodbyeLogo();
 
@@ -193,3 +224,4 @@ namespace POE_ChatBot_ST10438817
 
     }//end of class
 }
+

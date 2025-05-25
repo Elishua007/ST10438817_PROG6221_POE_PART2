@@ -242,7 +242,8 @@ namespace POE_ChatBot_ST10438817
                 $@"{ChatBot_Characteristics.DisplayChatBotDialog()}Privacy is a human right, not a privilege. It’s about control over your personal data.",
                 $@"{ChatBot_Characteristics.DisplayChatBotDialog()}Your digital footprint is like a breadcrumb trail—companies track it to know you better than you know yourself.",
                 $@"{ChatBot_Characteristics.DisplayChatBotDialog()}Data breaches expose millions of records daily, making privacy a top concern.",
-                $@"{ChatBot_Characteristics.DisplayChatBotDialog()}Privacy laws vary globally, but the trend is clear: more protection for individuals and stricter rules for companies.",
+                $@"{ChatBot_Characteristics.DisplayChatBotDialog()}Privacy laws vary globally, but the trend is clear: more protection for individuals and stricter rules for 
+        companies.",
                 $@"{ChatBot_Characteristics.DisplayChatBotDialog()}You have the right to be forgotten online. If you want to erase your digital past, you can do so."
             };
             return PrivacyFactsContent;
@@ -323,13 +324,13 @@ namespace POE_ChatBot_ST10438817
                 userInput.IndexOf(ud.UserFavouriteTopic, StringComparison.OrdinalIgnoreCase) >= 0)
             {
                 string[] FavourtieTopicResponse = {
-            $"Ohh yes, I remember — {ud.UserFavouriteTopic} was your favourite cybersecurity topic!",
-            $"That's right! You're really into {ud.UserFavouriteTopic}, aren't you?",
-            $"Oh yes, you brought {ud.UserFavouriteTopic} up earlier — very relevant in today's digital world!",
-            $"I remember you mentioned {ud.UserFavouriteTopic} before. Let's dive deeper into it!"
+            $"\n Ohh yes, I remember — {ud.UserFavouriteTopic} was your favourite cybersecurity topic!\n",
+            $"\nThat's right! You're really into {ud.UserFavouriteTopic}, aren't you?\n",
+            $"\nOh yes, you brought {ud.UserFavouriteTopic} up earlier — very relevant in today's digital world!\n",
+            $"\nI remember you mentioned {ud.UserFavouriteTopic} before. Let's dive deeper into it!\n"
         };
 
-                ChatBot_Characteristics.ChatBot_Colour();
+                Console.ForegroundColor = ConsoleColor.Red;
                 Console.Write(FavourtieTopicResponse[random.Next(FavourtieTopicResponse.Length)]);
             }
         }

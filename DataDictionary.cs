@@ -172,13 +172,13 @@ namespace POE_ChatBot_ST10438817
                     foreach (string word in splitWords)
                     {
                         if (validTopics.Contains(word))
-                        {
+                        {  
                             Console.WriteLine($"{ChatBot_Characteristics.DisplayChatBotDialog()}Would you like to know more about {word}? It's a crucial part of cybersecurity.");
                             Console.Write($"{ChatBot_Characteristics.DisplayUserDialog()}");
                             string response = Console.ReadLine().Trim().ToLower();
 
                             if (response == "yes" || response == "sure" || response == "absolutely")
-                            {
+                            {      
                                 Console.WriteLine($"{ChatBot_Characteristics.DisplayChatBotDialog()}Great! Here's some more information about {word}:");
                                 Console.WriteLine($"{GetRandomCyberResponse(word)}");
                             }
@@ -188,7 +188,7 @@ namespace POE_ChatBot_ST10438817
                             }
                             else
                             {
-                                Console.WriteLine($"{ChatBot_Characteristics.DisplayChatBotDialog()}I didn't quite understand that. Please answer with 'yes' or 'no'.");
+                                Console.WriteLine($"{ChatBot_Characteristics.DisplayChatBotDialog()}I didn't quite understand that.");
                             }
                         }
                     }
